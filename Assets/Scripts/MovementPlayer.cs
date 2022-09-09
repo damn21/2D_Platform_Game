@@ -32,17 +32,22 @@ public class MovementPlayer : MonoBehaviour
         Animator.SetBool("Running", Horizontal != 0.0f);
 
         Debug.DrawRay(transform.position, Vector3.down * 0.5f, Color.red);
-        if (Physics2D.Raycast(transform.position, Vector3.down, 0.5f))
+        if (Physics2D.Raycast(transform.position, Vector3.down, 0.2f))
         {
             Grounded = true;
         }
         else Grounded = false;
 
+        Animator.SetBool("Jump", !Grounded);
+
         if (Input.GetKeyDown(KeyCode.Space) && Grounded)
         {
+
             Jump();
         }
+
         
+
     }
 
     private void Jump()
